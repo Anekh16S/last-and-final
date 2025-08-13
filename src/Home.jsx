@@ -161,8 +161,8 @@ export default function Home({ addToCart }) {
         
         {/* Featured Products Section */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-center mb-6 holographic-text">Featured.Products.exe</h2>
-          <p className="mb-8 text-gray-600 text-center font-mono">// Discover sustainable handicrafts.dll</p>
+          <h2 className="text-3xl font-bold font-mono text-center mb-6 holographic-text">Featured.Products</h2>
+          <p className="mb-8 text-gray-600 text-center font-mono">// Discover sustainable handicrafts</p>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

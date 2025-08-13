@@ -157,7 +157,7 @@ export default function ProductDetails({ addToCart }) {
   }
 
   return (
-    <div className="py-8 max-w-4xl mx-auto">
+    <div className="py-8 max-w-4xl w-full mx-auto">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="md:flex">
           {/* Product Image */}
@@ -172,7 +172,7 @@ export default function ProductDetails({ addToCart }) {
             <p className="text-gray-600 mb-6 leading-relaxed">{product.description}</p>
             
             {/* Product Specifications */}
-            <div className="space-y-4 mb-6">
+            <div className="space-y-4 mb-6 w-full">
               <h3 className="text-xl font-semibold text-gray-800">Product Details</h3>
               <div className="grid grid-cols-1 gap-3">
                 <div className="flex justify-between border-b pb-2">
