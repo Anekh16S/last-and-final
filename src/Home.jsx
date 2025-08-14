@@ -139,14 +139,7 @@ export default function Home({ addToCart }) {
   ];
 
   return (
-    <div className="py-8 flex justify-center relative">
-      {/* Futuristic Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-green-400/10 to-blue-400/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-      </div>
-      
-      <div className="w-full">
+    <div className="py-8">
         {/* Main Banner Slider */}
         <BannerSlider />
         
@@ -161,37 +154,44 @@ export default function Home({ addToCart }) {
         
         {/* Featured Products Section */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold font-mono text-center mb-6 holographic-text">Featured.Products</h2>
-          <p className="mb-8 text-gray-600 text-center font-mono">// Discover sustainable handicrafts</p>
+          <h2 className="text-3xl font-bold text-center mb-4">Featured Products</h2>
+          <p className="mb-8 text-gray-600 text-center max-w-2xl mx-auto">Discover our carefully curated collection of sustainable handicrafts made by skilled artisans</p>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map(product => (
-            <div key={product.id} className="futuristic-card rounded-xl p-4 flex flex-col items-center cursor-pointer hover:transform hover:scale-105 transition-all duration-300 glass">
+            <div key={product.id} className="card hover:transform hover:scale-105 transition-all duration-300 cursor-pointer">
               <img 
                 src={product.image} 
                 alt={product.name} 
-                className="w-full h-40 object-cover rounded-lg mb-3 hover:scale-110 transition-transform duration-300 border border-green-400/20" 
+                className="w-full h-48 object-cover rounded-lg mb-4 transition-transform duration-300" 
                 onClick={() => window.location.href = `/products/${product.id}`}
               />
-              <h3 className="font-semibold text-base mb-2 text-center font-mono text-green-400">{product.name}</h3>
-              <p className="text-green-400 font-bold mb-2 text-lg neon-glow-green">{product.price}</p>
-              <p className="text-gray-400 text-xs mb-3 text-center line-clamp-2">{product.description}</p>
+              <div className="flex flex-col flex-1">
+                <h3 className="font-semibold text-lg mb-2 text-center">{product.name}</h3>
+                <p className="text-green-600 font-bold mb-2 text-xl text-center">{product.price}</p>
+                <p className="text-gray-600 text-sm mb-4 text-center line-clamp-2 flex-1">{product.description}</p>
+                
+                <div className="flex gap-2 mt-auto">
               <button 
-                className="cyber-button px-4 py-2 rounded-lg text-sm mb-2 font-mono"
+                  className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
                 onClick={() => window.location.href = `/products/${product.id}`}
               >
-                view.exe
+                    View Details
               </button>
               {addToCart && (
-                <button className="cyber-button px-4 py-2 rounded-lg text-sm font-mono neon-glow-green" onClick={() => addToCart(product)}>
-                  add.cart
+                  <button 
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200" 
+                    onClick={() => addToCart(product)}
+                  >
+                    Add to Cart
                 </button>
               )}
+                </div>
+              </div>
             </div>
           ))}
         </div>
-      </div>
     </div>
   );
 }

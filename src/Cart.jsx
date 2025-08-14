@@ -12,33 +12,38 @@ export default function Cart({ cart = [], removeFromCart }) {
   };
 
   return (
-    <div className="py-8 flex justify-center relative">
-      {/* Futuristic Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-green-400/10 to-blue-400/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-      </div>
-      
-      <div className="w-full">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="glass rounded-xl border border-green-400/20 neon-glow-green p-6">
-      <h2 className="text-3xl font-bold mb-4 holographic-text font-mono">Cart.System.exe</h2>
+    <div className="py-8">
+      <h2 className="text-3xl font-bold mb-6">Shopping Cart</h2>
       {cart.length === 0 ? (
-        <p className="text-gray-400 font-mono">// Cart.empty.status = true</p>
+        <div className="text-center py-12">
+          <div className="text-6xl mb-4">🛒</div>
+          <h3 className="text-xl font-semibold mb-2">Your cart is empty</h3>
+          <p className="text-gray-600 mb-6">Start shopping to add items to your cart</p>
+          <button 
+            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
+            onClick={() => window.location.href = '/products'}
+          >
+            Browse Products
+          </button>
+        </div>
       ) : (
         <>
-          <div className="space-y-4 w-full">
+          <div className="space-y-4 mb-8">
             {cart.map((item, idx) => (
-              <div key={idx} className="flex items-center glass rounded-lg p-4 w-full border border-blue-400/20 hover:neon-glow-blue transition-all duration-300">
-                <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded-lg mr-4 border border-green-400/30" />
+              <div key={idx} className="card flex items-center p-4">
+                <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded-lg mr-4" />
                 <div className="flex-1">
-                  <strong className="text-lg text-green-400 font-mono">{item.name}</strong>
-                  <div className="text-green-400 font-bold w-full neon-glow-green">{item.price}</div>
-                  <div className="text-gray-400 text-sm w-full">{item.description}</div>
+                  <h3 className="text-lg font-semibold mb-1">{item.name}</h3>
+                  <p className="text-green-600 font-bold text-xl mb-1">{item.price}</p>
+                  <p className="text-gray-600 text-sm">{item.description}</p>
                 </div>
                 {removeFromCart && (
-                  <button className="glass text-red-400 px-3 py-1 rounded hover:neon-glow-purple ml-4 font-mono transition-all duration-300 border border-red-400/30" onClick={() => removeFromCart(item.id)}>
-                    remove.exe
+                  <button 
+                    className="bg-red-100 hover:bg-red-200 text-red-700 px-4 py-2 rounded-lg ml-4 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500"
+                    onClick={() => removeFromCart(item.id)}
+                    aria-label={`Remove ${item.name} from cart`}
+                  >
+                    Remove
                   </button>
                 )}
               </div>
@@ -46,22 +51,19 @@ export default function Cart({ cart = [], removeFromCart }) {
           </div>
           
           {/* Cart Summary */}
-          <div className="mt-8 glass rounded-lg p-6 w-full border border-purple-400/20 neon-glow-purple">
+          <div className="card">
             <div className="flex justify-between items-center mb-4">
-              <span className="text-xl font-bold holographic-text font-mono">Total.sum: ₹{calculateTotal()}</span>
+              <span className="text-2xl font-bold">Total: ₹{calculateTotal()}</span>
             </div>
             <button 
-              className="w-full cyber-button px-6 py-3 rounded-lg font-semibold text-lg font-mono neon-glow-green transition-all duration-300"
+              className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold text-lg transition-colors duration-200"
               onClick={() => navigate('/shipping')}
             >
-              checkout.exe
+              Proceed to Checkout
             </button>
           </div>
         </>
       )}
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

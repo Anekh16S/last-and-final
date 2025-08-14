@@ -95,14 +95,15 @@ const NewArrivals = ({ addToCart }) => {
     <div className="w-full">
       <div className="flex items-center justify-between mb-6">
         <div className="w-full">
-          <h2 className="text-3xl font-bold font-mono text-center mb-6 holographic-text">New.Arrivals</h2>
-          <p className="mb-8 text-gray-600 text-center font-mono">// Fresh handcrafted treasures just for you</p>
+          <h2 className="text-3xl font-bold text-center mb-4">New Arrivals</h2>
+          <p className="mb-8 text-gray-600 text-center max-w-2xl mx-auto">Fresh handcrafted treasures just for you</p>
         </div>
         <div className="flex space-x-2">
           <button
             onClick={() => scroll('left')}
-            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
             disabled={scrollPosition === 0}
+            aria-label="Scroll left"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -110,7 +111,8 @@ const NewArrivals = ({ addToCart }) => {
           </button>
           <button
             onClick={() => scroll('right')}
-            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="Scroll right"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -127,7 +129,7 @@ const NewArrivals = ({ addToCart }) => {
         {newProducts.map((product) => (
           <div
             key={product.id}
-            className="flex-shrink-0 w-64 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+            className="flex-shrink-0 w-64 card hover:shadow-lg transition-all duration-300 transform hover:scale-105"
           >
             <div className="relative">
               <img
@@ -136,22 +138,22 @@ const NewArrivals = ({ addToCart }) => {
                 className="w-full h-48 object-cover rounded-t-lg"
               />
               {product.isNew && (
-                <div className="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                <div className="absolute top-2 left-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full">
                   NEW
                 </div>
               )}
-              <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+              <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
                 {product.discount}
               </div>
             </div>
             
             <div className="p-4">
-              <h3 className="font-semibold text-gray-800 mb-2 line-clamp-2">{product.name}</h3>
+              <h3 className="font-semibold mb-2 line-clamp-2">{product.name}</h3>
               <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
               
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-2">
-                  <span className="text-lg font-bold text-green-700">{product.price}</span>
+                  <span className="text-lg font-bold text-green-600">{product.price}</span>
                   <span className="text-sm text-gray-500 line-through">{product.originalPrice}</span>
                 </div>
               </div>
@@ -159,14 +161,14 @@ const NewArrivals = ({ addToCart }) => {
               <div className="flex space-x-2">
                 <button
                   onClick={() => window.location.href = `/products/${product.id}`}
-                  className="flex-1 bg-gray-100 text-gray-800 px-3 py-2 rounded text-sm font-medium hover:bg-gray-200 transition-colors"
+                  className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 rounded text-sm font-medium transition-colors duration-200"
                 >
                   View Details
                 </button>
                 {addToCart && (
                   <button
                     onClick={() => addToCart(product)}
-                    className="flex-1 bg-green-600 text-white px-3 py-2 rounded text-sm font-medium hover:bg-green-700 transition-colors"
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-sm font-medium transition-colors duration-200"
                   >
                     Add to Cart
                   </button>

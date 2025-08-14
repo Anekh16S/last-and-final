@@ -63,11 +63,10 @@ function App() {
   }
 
   return (
-    <div className={`min-h-screen w-full overflow-x-hidden flex flex-col relative ${isDarkMode ? 'dark bg-gradient-to-br from-gray-900 via-gray-800 to-black' : 'bg-gradient-to-br from-gray-50 via-white to-gray-100'}`}>
+    <div className={`min-h-screen w-full overflow-x-hidden flex flex-col relative ${isDarkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
       {/* Futuristic Background Elements */}
-      <div className="fixed inset-0 cyber-grid opacity-20 pointer-events-none" />
-      <div className="data-stream" />
-      <div className="floating-particles">
+      <div className="fixed inset-0 cyber-grid opacity-5 pointer-events-none" />
+      <div className="floating-particles opacity-30">
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
@@ -83,15 +82,15 @@ function App() {
       
       {/* Notification */}
       {notification && (
-        <div className="fixed top-20 right-4 glass neon-glow-green text-green-400 px-6 py-3 rounded-lg shadow-lg z-50 animate-pulse-notification border border-green-400/30">
+        <div className="fixed top-20 right-4 bg-green-100 border border-green-400 text-green-800 px-6 py-3 rounded-lg shadow-lg z-50 animate-pulse-notification">
           {notification}
         </div>
       )}
       <Router>
         
         <Navbar user={user} onSignOut={handleSignOut} onSearch={handleSearch} isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-        <main className="pt-20 flex-1">
-          <div className="w-full px-4 sm:px-6 lg:px-8">
+        <main id="main-content" className="flex-1 pt-8">
+          <div className="container mx-auto">
             <Routes>
               <Route path="/" element={<Home addToCart={addToCart} />} />
               <Route path="/products" element={<Products addToCart={addToCart} searchTerm={searchTerm} />} />
@@ -106,13 +105,15 @@ function App() {
             </Routes>
           </div>
         </main>
-        <footer className={`border-t py-6 text-center text-sm mt-8 glass ${isDarkMode ? 'border-gray-700/30 text-gray-400' : 'border-gray-200/30 text-gray-500'}`}>
-          <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 px-4 sm:px-6 lg:px-8">
-            <div className="font-mono">&copy; {new Date().getFullYear()} EarthMart.exe - All rights reserved.</div>
+        <footer className={`border-t py-8 text-center text-sm mt-12 ${isDarkMode ? 'border-gray-700 bg-gray-800 text-gray-400' : 'border-gray-200 bg-white text-gray-600'}`}>
+          <div className="container mx-auto">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div>&copy; {new Date().getFullYear()} EarthMart - All rights reserved.</div>
             <div className="flex gap-6">
-              <a href="#" className={`hover:text-green-400 transition-colors ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Privacy.exe</a>
-              <a href="#" className={`hover:text-green-400 transition-colors ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Terms.sys</a>
-              <a href="#" className={`hover:text-green-400 transition-colors ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Contact.dll</a>
+                <a href="#" className="hover:text-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 rounded">Privacy Policy</a>
+                <a href="#" className="hover:text-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 rounded">Terms of Service</a>
+                <a href="#" className="hover:text-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 rounded">Contact Us</a>
+            </div>
             </div>
           </div>
         </footer>

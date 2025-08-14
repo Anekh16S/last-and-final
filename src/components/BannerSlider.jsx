@@ -67,7 +67,7 @@ const BannerSlider = () => {
   };
 
   return (
-    <div className="relative w-full h-80 md:h-96 overflow-hidden rounded-xl glass neon-glow-blue mb-8 border border-blue-400/20">
+    <div className="relative w-full h-80 md:h-96 overflow-hidden rounded-xl mb-8 shadow-lg">
       {/* Banner Container */}
       <div 
         className="flex transition-transform duration-500 ease-in-out h-full"
@@ -76,7 +76,7 @@ const BannerSlider = () => {
         {banners.map((banner) => (
           <div
             key={banner.id}
-            className={`min-w-full h-full bg-gradient-to-r ${banner.bgColor} relative flex items-center cyber-grid`}
+            className={`min-w-full h-full bg-gradient-to-r ${banner.bgColor} relative flex items-center`}
           >
             {/* Background Image Overlay */}
             <div 
@@ -87,23 +87,23 @@ const BannerSlider = () => {
             {/* Content */}
             <div className="relative z-10 w-full px-8 md:px-16">
               <div className="max-w-2xl">
-                <div className={`text-sm font-medium mb-2 ${banner.textColor} opacity-90 font-mono`}>
+                <div className={`text-sm font-medium mb-2 ${banner.textColor} opacity-90`}>
                   {banner.type === 'seasonal' && '🎄 SEASONAL SALE'}
                   {banner.type === 'discount' && '🏷️ SPECIAL OFFER'}
                   {banner.type === 'category' && '🏠 FEATURED CATEGORY'}
                   {banner.type === 'new-arrivals' && '✨ NEW ARRIVALS'}
                 </div>
-                <h2 className={`text-3xl md:text-5xl font-bold mb-3 ${banner.textColor} font-mono holographic-text`}>
+                <h2 className={`text-3xl md:text-5xl font-bold mb-3 ${banner.textColor}`}>
                   {banner.title}
                 </h2>
-                <p className={`text-lg md:text-xl mb-2 ${banner.textColor} opacity-90 font-mono`}>
+                <p className={`text-lg md:text-xl mb-2 ${banner.textColor} opacity-90`}>
                   {banner.subtitle}
                 </p>
-                <p className={`text-sm md:text-base mb-6 ${banner.textColor} opacity-80 font-mono`}>
+                <p className={`text-sm md:text-base mb-6 ${banner.textColor} opacity-80`}>
                   {banner.description}
                 </p>
-                <button className="cyber-button px-6 py-3 rounded-full font-semibold transition-all duration-300 neon-glow-green font-mono">
-                  shop.now.exe
+                <button className="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2">
+                  Shop Now
                 </button>
               </div>
             </div>
@@ -113,7 +113,7 @@ const BannerSlider = () => {
               <img 
                 src={banner.image} 
                 alt={banner.title}
-                className="w-48 h-48 object-cover rounded-full shadow-2xl opacity-80 neon-glow-purple border-2 border-purple-400/30"
+                className="w-48 h-48 object-cover rounded-full shadow-2xl opacity-80"
               />
             </div>
           </div>
@@ -123,7 +123,8 @@ const BannerSlider = () => {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 glass hover:neon-glow-green text-white p-2 rounded-full transition-all duration-300 border border-green-400/30"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white"
+        aria-label="Previous slide"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -131,7 +132,8 @@ const BannerSlider = () => {
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 glass hover:neon-glow-green text-white p-2 rounded-full transition-all duration-300 border border-green-400/30"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white"
+        aria-label="Next slide"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -144,11 +146,12 @@ const BannerSlider = () => {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              currentSlide === index 
-                ? 'bg-green-400 scale-110 neon-glow-green' 
-                : 'bg-white bg-opacity-50 hover:bg-opacity-75 hover:neon-glow-blue'
+            className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white ${
+              currentSlide === index
+                ? 'bg-white scale-110'
+                : 'bg-white bg-opacity-50 hover:bg-opacity-75'
             }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>

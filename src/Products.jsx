@@ -598,43 +598,39 @@ export default function Products({ addToCart, searchTerm = '' }) {
   });
 
   return (
-    <div className="py-8 relative">
-      {/* Futuristic Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 left-20 w-24 h-24 bg-gradient-to-r from-green-400/10 to-blue-400/10 rounded-full blur-2xl animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-32 h-32 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
-      </div>
-      
+    <div className="py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4 holographic-text font-mono">Product.Catalogue.exe</h1>
-        <p className="text-gray-400 text-lg font-mono">// Browse eco-friendly handicrafts.dll</p>
+        <h1 className="text-4xl font-bold mb-4">Product Catalogue</h1>
+        <p className="text-gray-600 text-lg max-w-2xl">Browse our extensive collection of eco-friendly handicrafts made by skilled artisans</p>
       </div>
 
       {/* Filters and Search */}
-      <div className="mb-8 glass rounded-lg p-6 border border-green-400/20 neon-glow-green">
+      <div className="mb-8 card">
         <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
           {/* Search */}
           <div className="flex-1 max-w-md">
             <input
               type="text"
-              placeholder="search.products.exe..."
+              placeholder="Search products..."
               value={localSearchTerm}
               onChange={(e) => setLocalSearchTerm(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 glass font-mono"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              aria-label="Search products"
             />
           </div>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Category filters">
             {categories.map(category => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                   selectedCategory === category
-                    ? 'cyber-button neon-glow-green text-green-400'
-                    : 'glass text-gray-400 hover:text-green-400 hover:neon-glow-green'
+                    ? 'bg-green-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
+                aria-pressed={selectedCategory === category}
               >
                 {category}
               </button>
@@ -645,11 +641,12 @@ export default function Products({ addToCart, searchTerm = '' }) {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-4 py-2 border border-gray-300/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 glass font-mono"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            aria-label="Sort products"
           >
-            <option value="name">sort.name.exe</option>
-            <option value="price-low">price.asc.dll</option>
-            <option value="price-high">price.desc.dll</option>
+            <option value="name">Sort by Name</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
           </select>
         </div>
       </div>
@@ -657,46 +654,46 @@ export default function Products({ addToCart, searchTerm = '' }) {
       {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
         {sortedProducts.map(product => (
-          <div key={product.id} className="futuristic-card rounded-xl hover:transform hover:scale-105 transition-all duration-300 overflow-hidden glass border border-green-400/20">
+          <div key={product.id} className="card hover:transform hover:scale-105 transition-all duration-300 overflow-hidden">
             <div className="relative">
               <img 
                 src={product.image} 
                 alt={product.name} 
-                className="w-full h-48 object-cover cursor-pointer hover:scale-110 transition-transform duration-300"
+                className="w-full h-48 object-cover cursor-pointer transition-transform duration-300"
                 onClick={() => navigate(`/products/${product.id}`)}
               />
-              <div className="absolute top-2 right-2 cyber-button text-xs font-bold px-2 py-1 rounded-full font-mono neon-glow-green">
+              <div className="absolute top-2 right-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full">
                 {product.category}
               </div>
             </div>
             
             <div className="p-4">
-              <h3 className="font-semibold text-lg mb-2 text-green-400 line-clamp-2 font-mono">{product.name}</h3>
-              <p className="text-green-400 font-bold text-xl mb-2 neon-glow-green">{product.price}</p>
-              <p className="text-gray-400 text-sm mb-3 line-clamp-2">{product.description}</p>
+              <h3 className="font-semibold text-lg mb-2 line-clamp-2">{product.name}</h3>
+              <p className="text-green-600 font-bold text-xl mb-2">{product.price}</p>
+              <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
               
               <div className="mb-3">
-                <p className="text-xs text-gray-400 mb-1 font-mono">
-                  <span className="font-medium text-green-400">material.type:</span> {product.material}
+                <p className="text-xs text-gray-600 mb-1">
+                  <span className="font-medium">Material:</span> {product.material}
                 </p>
-                <p className="text-xs text-gray-400 font-mono">
-                  <span className="font-medium text-green-400">origin.src:</span> {product.origin}
+                <p className="text-xs text-gray-600">
+                  <span className="font-medium">Origin:</span> {product.origin}
                 </p>
               </div>
               
               <div className="flex gap-2">
                 <button 
-                  className="flex-1 glass text-gray-400 px-3 py-2 rounded text-sm font-medium hover:text-green-400 hover:neon-glow-blue transition-all duration-300 font-mono"
+                  className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 rounded text-sm font-medium transition-colors duration-200"
                   onClick={() => navigate(`/products/${product.id}`)}
                 >
-                  view.exe
+                  View Details
                 </button>
                 {addToCart && (
                   <button 
-                    className="flex-1 cyber-button px-3 py-2 rounded text-sm font-medium transition-all duration-300 font-mono neon-glow-green"
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-sm font-medium transition-colors duration-200"
                     onClick={() => addToCart(product)}
                   >
-                    add.cart
+                    Add to Cart
                   </button>
                 )}
               </div>
@@ -708,15 +705,15 @@ export default function Products({ addToCart, searchTerm = '' }) {
       {/* No Results */}
       {sortedProducts.length === 0 && (
         <div className="text-center py-12">
-          <div className="text-6xl mb-4 neon-glow-blue">🔍</div>
-          <h3 className="text-xl font-semibold text-green-400 mb-2 font-mono">No.products.found.exe</h3>
-          <p className="text-gray-400 font-mono">// Try adjusting search parameters</p>
+          <div className="text-6xl mb-4">🔍</div>
+          <h3 className="text-xl font-semibold mb-2">No products found</h3>
+          <p className="text-gray-600">Try adjusting your search or filter criteria</p>
         </div>
       )}
 
       {/* Results Count */}
       <div className="mt-8 text-center text-gray-600">
-        <span className="font-mono text-green-400">// Showing {sortedProducts.length} of {products.length} products.exe</span>
+        <span>Showing {sortedProducts.length} of {products.length} products</span>
       </div>
     </div>
   );

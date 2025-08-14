@@ -8,53 +8,98 @@
 
 /* Futuristic CSS Variables */
 :root {
-  --neon-green: #00ff88;
-  --neon-blue: #00d4ff;
-  --neon-purple: #b347ff;
+  --neon-green: #22c55e;
+  --neon-blue: #3b82f6;
+  --neon-purple: #8b5cf6;
   --cyber-dark: #0a0a0f;
   --cyber-gray: #1a1a2e;
   --cyber-light: #16213e;
-  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+}
+
+/* Dark mode variables */
+.dark {
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --glass-bg: rgba(0, 0, 0, 0.3);
   --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 /* Futuristic Base Styles */
 * {
   font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
 }
 
 .font-mono {
   font-family: 'JetBrains Mono', monospace;
 }
 
+/* Improved text readability */
+body {
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Better heading hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.5em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1.125rem; }
+
+/* Improved paragraph spacing */
+p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  max-width: 65ch;
+}
+
 /* Glassmorphism Effect */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 /* Neon Glow Effects */
 .neon-glow-green {
-  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3), 0 0 40px rgba(0, 255, 136, 0.1);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.2), 0 0 20px rgba(34, 197, 94, 0.1);
 }
 
 .neon-glow-blue {
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), 0 0 40px rgba(0, 212, 255, 0.1);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.1);
 }
 
 .neon-glow-purple {
-  box-shadow: 0 0 20px rgba(179, 71, 255, 0.3), 0 0 40px rgba(179, 71, 255, 0.1);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.2), 0 0 20px rgba(139, 92, 246, 0.1);
 }
 
 /* Cyber Grid Background */
 .cyber-grid {
   background-image: 
-    linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+    linear-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
   background-size: 50px 50px;
-  animation: gridMove 20s linear infinite;
+  animation: gridMove 30s linear infinite;
 }
 
 @keyframes gridMove {
@@ -64,12 +109,13 @@
 
 /* Holographic Text Effect */
 .holographic-text {
-  background: linear-gradient(45deg, #00ff88, #00d4ff, #b347ff, #00ff88);
+  background: linear-gradient(45deg, #22c55e, #3b82f6, #8b5cf6, #22c55e);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: holographicShift 3s ease-in-out infinite;
+  animation: holographicShift 4s ease-in-out infinite;
+  font-weight: 700;
 }
 
 @keyframes holographicShift {
@@ -80,11 +126,18 @@
 /* Futuristic Button Styles */
 .cyber-button {
   position: relative;
-  background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
-  border: 1px solid rgba(0, 255, 136, 0.3);
-  color: #00ff88;
+  background: linear-gradient(45deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+  border: 2px solid rgba(34, 197, 94, 0.4);
+  color: #22c55e;
   transition: all 0.3s ease;
   overflow: hidden;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-transform: none;
+  font-size: 0.875rem;
+  min-height: 44px; /* Accessibility: minimum touch target */
 }
 
 .cyber-button::before {
@@ -94,7 +147,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.2), transparent);
   transition: left 0.5s;
 }
 
@@ -103,8 +156,20 @@
 }
 
 .cyber-button:hover {
-  box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
   transform: translateY(-2px);
+  border-color: rgba(34, 197, 94, 0.6);
+}
+
+.cyber-button:focus {
+  outline: 2px solid #22c55e;
+  outline-offset: 2px;
+}
+
+.cyber-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* Floating Particles Animation */
@@ -120,19 +185,19 @@
   position: absolute;
   width: 2px;
   height: 2px;
-  background: #00ff88;
+  background: #22c55e;
   border-radius: 50%;
   animation: floatUp 8s linear infinite;
   opacity: 0;
 }
 
 .particle:nth-child(odd) {
-  background: #00d4ff;
+  background: #3b82f6;
   animation-duration: 10s;
 }
 
 .particle:nth-child(3n) {
-  background: #b347ff;
+  background: #8b5cf6;
   animation-duration: 12s;
 }
 
@@ -183,9 +248,9 @@
   right: 20px;
   width: 2px;
   height: 100vh;
-  background: linear-gradient(to bottom, transparent, #00ff88, transparent);
+  background: linear-gradient(to bottom, transparent, #22c55e, transparent);
   animation: dataFlow 3s linear infinite;
-  opacity: 0.3;
+  opacity: 0.1;
 }
 
 @keyframes dataFlow {
@@ -196,10 +261,12 @@
 /* Futuristic Card Hover Effects */
 .futuristic-card {
   position: relative;
-  background: rgba(10, 10, 15, 0.8);
-  border: 1px solid rgba(0, 255, 136, 0.2);
+  background: var(--bg-primary);
+  border: 1px solid rgba(34, 197, 94, 0.2);
   transition: all 0.3s ease;
   overflow: hidden;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .futuristic-card::before {
@@ -209,7 +276,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, #00ff88, #00d4ff, #b347ff, #00ff88);
+  background: linear-gradient(45deg, #22c55e, #3b82f6, #8b5cf6, #22c55e);
   background-size: 400% 400%;
   z-index: -1;
   opacity: 0;
@@ -240,7 +307,7 @@
 
 .matrix-char {
   position: absolute;
-  color: #00ff88;
+  color: #22c55e;
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
   animation: matrixFall 5s linear infinite;
@@ -259,15 +326,15 @@
 
 /* Pulse Animation */
 .pulse-glow {
-  animation: pulseGlow 2s ease-in-out infinite alternate;
+  animation: pulseGlow 3s ease-in-out infinite alternate;
 }
 
 @keyframes pulseGlow {
   from {
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
   }
   to {
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.4), 0 0 40px rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3), 0 0 30px rgba(34, 197, 94, 0.1);
   }
 }
 
@@ -275,8 +342,8 @@
 .cyber-spinner {
   width: 40px;
   height: 40px;
-  border: 2px solid rgba(0, 255, 136, 0.1);
-  border-top: 2px solid #00ff88;
+  border: 2px solid rgba(34, 197, 94, 0.1);
+  border-top: 2px solid #22c55e;
   border-radius: 50%;
   animation: cyberSpin 1s linear infinite;
 }
@@ -284,6 +351,65 @@
 @keyframes cyberSpin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Improved Focus Styles for Accessibility */
+*:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Skip to main content link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #3b82f6;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Improved form styles */
+input, textarea, select {
+  border: 2px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 44px; /* Accessibility: minimum touch target */
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Better link styles */
+a {
+  color: #3b82f6;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.2s ease;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+a:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* Hide scrollbar for webkit browsers */
@@ -303,6 +429,50 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Responsive utilities */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container { padding: 0 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .container { padding: 0 2rem; }
+}
+
+/* Improved spacing system */
+.space-y-1 > * + * { margin-top: 0.25rem; }
+.space-y-2 > * + * { margin-top: 0.5rem; }
+.space-y-3 > * + * { margin-top: 0.75rem; }
+.space-y-4 > * + * { margin-top: 1rem; }
+.space-y-6 > * + * { margin-top: 1.5rem; }
+.space-y-8 > * + * { margin-top: 2rem; }
+
+/* Better card styles */
+.card {
+  background: var(--bg-primary);
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode card styles */
+.dark .card {
+  background: var(--bg-secondary);
+  border-color: #374151;
 }
 
 /* Swaying leaves animation */
@@ -360,9 +530,9 @@
 .craft-element {
   position: absolute;
   font-size: 2rem;
-  opacity: 0.6;
+  opacity: 0.3;
   animation: craftFloat 8s ease-in-out infinite;
-  filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.3));
+  filter: drop-shadow(0 0 5px rgba(34, 197, 94, 0.2));
 }
 
 .craft-element.element-1 {
@@ -404,19 +574,19 @@
 @keyframes craftFloat {
   0%, 100% {
     transform: translateY(0) rotate(0deg);
-    opacity: 0.4;
+    opacity: 0.2;
   }
   25% {
     transform: translateY(-20px) rotate(5deg);
-    opacity: 0.8;
+    opacity: 0.4;
   }
   50% {
     transform: translateY(-30px) rotate(0deg);
-    opacity: 0.6;
+    opacity: 0.3;
   }
   75% {
     transform: translateY(-15px) rotate(-5deg);
-    opacity: 0.9;
+    opacity: 0.5;
   }
 }
 
@@ -426,7 +596,7 @@
 .coconut-leaf {
   position: absolute;
   font-size: 2.5rem;
-  opacity: 0.4;
+  opacity: 0.2;
   animation: coconutSway 4s ease-in-out infinite;
 }
 
@@ -498,7 +668,7 @@
 .traditional-element {
   position: absolute;
   font-size: 2rem;
-  opacity: 0.3;
+  opacity: 0.2;
   animation: traditionalFloat 6s ease-in-out infinite;
 }
 
@@ -535,19 +705,19 @@
 @keyframes traditionalFloat {
   0%, 100% {
     transform: translateY(0) rotate(0deg);
-    opacity: 0.3;
+    opacity: 0.2;
   }
   25% {
     transform: translateY(-15px) rotate(5deg);
-    opacity: 0.5;
+    opacity: 0.3;
   }
   50% {
     transform: translateY(-20px) rotate(0deg);
-    opacity: 0.4;
+    opacity: 0.25;
   }
   75% {
     transform: translateY(-10px) rotate(-5deg);
-    opacity: 0.6;
+    opacity: 0.35;
   }
 }
 
@@ -609,6 +779,67 @@
   }
 }
 
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass {
+    background: var(--bg-primary);
+    border: 2px solid var(--text-primary);
+  }
+  
+  .cyber-button {
+    background: var(--bg-primary);
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+  }
+  
+  .holographic-text {
+    background: none;
+    -webkit-text-fill-color: var(--text-primary);
+    color: var(--text-primary);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .floating-particles,
+  .matrix-rain,
+  .data-stream,
+  .craft-element,
+  .traditional-element {
+    display: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .floating-particles,
+  .matrix-rain,
+  .data-stream,
+  .craft-element,
+  .traditional-element,
+  .cyber-grid {
+    display: none;
+  }
+  
+  .glass {
+    background: white;
+    border: 1px solid #000;
+  }
+  
+  .cyber-button {
+    background: white;
+    border: 1px solid #000;
+    color: #000;
+  }
+}
 
 
 
